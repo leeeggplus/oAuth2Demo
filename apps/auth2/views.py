@@ -27,7 +27,11 @@ azure_client_secret = 'lG6971})fwggciDCBEZX5%:'
 # outlook messages
 azure_outlook_get_messages_uri = 'https://graph.microsoft.com/v1.0/users/{0}/messages'
 azure_outlook_get_one_message_uri = 'https://graph.microsoft.com/v1.0//users/{0}/messages/{1}'
+# admin user
 azure_admin_get_one_user_uri = 'https://graph.microsoft.com/v1.0/users/{0}'
+# spo list item
+azure_spo_list_item_uri = 'https://graph.microsoft.com/v1.0/sites/{0}/lists/{1}/items/{2}'
+
 
 
 # error handler
@@ -273,7 +277,7 @@ def azure_read_first_message(request):
 # Get User
 def azure_get_user(request):
     '''
-    Read messages: DOC https://developer.microsoft.com/en-us/graph/docs/api-reference/v1.0/api/user_get
+    Get User: DOC https://developer.microsoft.com/en-us/graph/docs/api-reference/v1.0/api/user_get
     request: https://graph.microsoft.com/v1.0/users/{id | userPrincipalName}
     {userPrincipalName} sample - HARD CODE: aliciakeys@Madrix.onmicrosoft.com
     method: GET
@@ -307,5 +311,50 @@ def azure_get_user(request):
 
     return render_to_response('auth2/user.html', context)
 
+
+# Get SPO list item
+def azure_get_spo_list_item(request):
+    '''
+    Get SPO list item: DOC https://developer.microsoft.com/en-us/graph/docs/api-reference/v1.0/api/listitem_get
+    request: https://graph.microsoft.com/v1.0/sites/{site-id}/lists/{list-id}/items/{item-id}
+    method: GET
+
+    sample: "https://graph.microsoft.com/v1.0/sites/madrix.sharepoint.com, 24d5bf2e-b20b-4c53-8213-96d922da0cf7, 18c916b5-b56c-4b31-8df5-72a90a211d80/lists/7a33dfbd-d71b-49cb-b427-0bc8bfe093b5/items/1" 
+    {site-id} sample - HARD CODE: "id": "madrix.sharepoint.com, 24d5bf2e-b20b-4c53-8213-96d922da0cf7, 18c916b5-b56c-4b31-8df5-72a90a211d80",
+    {list-id} sample - HARD CODE: 7a33dfbd-d71b-49cb-b427-0bc8bfe093b5       
+    '''
+    site_id = 'madrix.sharepoint.com,24d5bf2e-b20b-4c53-8213-96d922da0cf7,18c916b5-b56c-4b31-8df5-72a90a211d80' #ensure NO space
+    list_id = '7a33dfbd-d71b-49cb-b427-0bc8bfe093b5'
+    item_id = '1'
+    get_spo_list_item_endpoint_uri = azure_spo_list_item_uri.format(site_id, list_id, item_id)
+
+    auth2_obj = auth2.objects.filter(provider='Azure').first()
+    token = 'Bearer {0}'.format(auth2_obj.access_token)
+
+    headers = {
+        'Authorization': token,
+    }
+    
+    req = urllib_Request.Request(get_spo_list_item_endpoint_uri, headers=headers)
+    res = urllib_Request.urlopen(req).read()
+    resJson = json.loads(res.decode('utf-8'))    
+
+    item = {
+        'id': resJson['id'],
+        'createdDateTime': resJson['createdDateTime'],
+        'webUrl': resJson['webUrl'],
+        'title': resJson['fields']['Title'],
+        'Author0': resJson['fields']['Author0'],
+        'Interests': resJson['fields']['Interests'],
+        'Country': resJson['fields']['Country'],
+    }
+
+    context = {
+        'item': item,
+    }
+
+    return render_to_response('auth2/spo_list_item.html', context)
+
+    
 
 

@@ -1,6 +1,6 @@
 from django.urls import path
 from apps.auth2.views import home, error, azure, azure_refresh_token, azure_read_messages, \
-                             azure_read_first_message, azure_get_user
+                             azure_read_first_message, azure_get_user, azure_get_spo_list_item
 
 urlpatterns= [
     # home page
@@ -14,4 +14,5 @@ urlpatterns= [
     path('azure_read_messages/', azure_read_messages, name='auth2_azure_read_messages'),
     path('azure_read_first_message/', azure_read_first_message, name='auth2_azure_read_first_message'),
     path('azure_get_user/', azure_get_user, name='auth2_azure_get_user'),
+    path('azure_get_spo_list_item/', azure_get_spo_list_item, name='auth2_azure_get_spo_list_item'),
 ];

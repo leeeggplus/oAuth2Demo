@@ -177,4 +177,34 @@
         </div> 
     </div>
 </div>
+
+<div class="container-full display-container" id="SharePointOperations">
+    <h4>SharePoint operations</h4>
+    <div class="row">
+        <div class="col-lg-2 col-md-2">
+            <button id="GetListItem" class="auth2login btn btn-primary">Get List Item</button>
+        </div>
+        <!--GET USER REQUEST/RESPONSE-->
+        <div class="col-lg-2 col-md-2">
+            <button type="button" class="btn btn-success auth2login" data-toggle="modal" data-target="#SPOGetListItemRequestModal">Get SPO Item</button>
+            <div id="SPOGetListItemRequestModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">Get User Request</div>
+                        <div class="modal-body">
+                            <img src="{% static "/auth2/img/admin_get_user_request_doc.png" %}" alt="admin_get_user_request_doc">
+                            <img src="{% static "/auth2/img/admin_get_user_response_doc.png" %}" alt="admin_get_user_response_doc">
+                            <img src="{% static "/auth2/img/admin_get_user_request_postman.png" %}" alt="admin_get_user_request_postman">
+                        </div>
+                        <div class="modal-footer">Copy Rights - Microsoft</div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        <!--Clear-->
+        <div class="col-lg-2 col-md-2">
+            <button id="ClearSPO" class="auth2login btn btn-danger">Clear User</button>
+        </div> 
+    </div>
+</div>
 {% endblock %}
