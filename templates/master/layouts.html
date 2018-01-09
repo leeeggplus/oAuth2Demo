@@ -1,0 +1,89 @@
+{% load static %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static "/bootstrap/3.3.7/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "/font-awesome/4.7.0/css/font-awesome.min.css" %}">
+    <link rel="stylesheet" href="{% static "/master/css/global.css" %}">
+    <script src="{% static "/jQuery/3.2.1/js/jquery-3.2.1.min.js" %}"></script>
+    <script src="{% static "/bootstrap/3.3.7/js/bootstrap.min.js" %}"></script>
+    <script src="{% static "/master/js/global.js" %}"></script>
+    {% block resource_content %}
+    {% endblock %}
+    
+    <title>oAuthDemo</title>
+</head>
+<body>  
+    <!--Navigation-->
+    <div id="topNavbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">oAuth2 Demo</a>
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'auth2_home' %}">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#price">Price</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#provider">{{ auth2_obj.provider }}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--END Navigation-->
+
+    <!--Main Content-->
+    
+    <div class="contentwrapper">
+        {% block container_content %}
+        {% endblock %}
+    </div>
+    
+    <!--END Main Content-->
+
+    <!--Footer-->
+    <div id="footer" class="footer fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4">
+                    <h4>Contact Us</h4>           
+                    <p><i class="fa fa-building" aria-hidden="true"></i> 999 Zixing Road, Shanghai, China</p> 
+                    <p><i class="fa fa-envelope-o" aria-hidden="true"></i> ldan@microsoft.com</p>  
+                    <p><i class="fa fa-phone" aria-hidden="true"></i> +86 21 6888 8888</p>  
+                    <p><i class="fa fa-globe" aria-hidden="true"></i> www.microsoft.com</p>          
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h4>About</h4>  
+                    <p><i class="fa fa-info" aria-hidden="true"></i> About us</p>
+                    <p><i class="fa fa-user-secret" aria-hidden="true"></i> Privacy</p>      
+                    <p><i class="fa fa-codiepie" aria-hidden="true"></i> Term & Condition</p>      
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <h4>Stay in touch</h4>
+                    <i class="social fa fa-facebook" aria-hidden="true"></i>
+                    <i class="social fa fa-weibo" aria-hidden="true"></i>
+                    <i class="social fa fa-weixin" aria-hidden="true"></i>
+                    <i class="social fa fa-linkedin" aria-hidden="true"></i>
+                    <i class="social fa fa-github" aria-hidden="true"></i>       
+                    <i class="social fa fa-google-plus" aria-hidden="true"></i>
+                    <input type="email" placeholder="Subscribe for updates">
+                    <button class="btn btn-success">Subscribe</button>            
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--END Footer-->    
+</body>
+</html>

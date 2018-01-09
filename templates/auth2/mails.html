@@ -1,0 +1,12 @@
+<div class="container-full display-container" id="OutlookMails">
+    <div class="row">   
+        {% for mail in mails %}     
+        <div class="col-lg-12 col-md-12">
+            <h4>subject: {{ mail.subject }}</h4>
+            <p>mail id: {{ mail.id }}</p>
+            <p>from: {{ mail.from }}</p>
+            <p>body preview: {{ mail.bodyPreview }}</p>
+        </div>  
+        {% endfor %}      
+    </div>    
+</div>

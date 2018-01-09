@@ -1,0 +1,15 @@
+{% extends 'master/layouts.html' %} 
+{% load static %} 
+
+{% block resource_content %}
+<link rel="stylesheet" href="{% static "auth2/css/auth2.css" %}"> 
+{% endblock %} 
+
+{% block container_content %}
+<div class="container">
+    <div class="errormessage">
+        <p>oops!</p>
+        <p>Error: {{ error_message }}</p>
+    </div>
+</div>
+{% endblock %}
