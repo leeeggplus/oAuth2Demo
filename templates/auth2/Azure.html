@@ -7,7 +7,7 @@
 {% endblock %} 
 
 {% block container_content %}
-<div class="container-full display-container">
+<div class="container-full display-container" id="TokenOperations">
     <div class="row"> 
         <div class="col-lg-2 col-md-2">
             <h4>provider</h4>
@@ -95,8 +95,8 @@
         
         <!--MAILS REQUEST-->
         <div class="col-lg-2 col-md-2">
-            <button type="button" class="btn btn-success auth2login" data-toggle="modal" data-target="#MailsRequesteModal">Mails Request</button>
-            <div id="MailsRequesteModal" class="modal fade" role="dialog">
+            <button type="button" class="btn btn-success auth2login" data-toggle="modal" data-target="#MailsRequestModal">Mails Request</button>
+            <div id="MailsRequestModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">Outlook Mails Request</div>
@@ -140,12 +140,41 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>       
         <!--Clear-->
         <div class="col-lg-2 col-md-2">
-            <button id="ClearMail" class="auth2login btn btn-danger">Clear</button>
+            <button id="ClearMail" class="auth2login btn btn-danger">Clear Mails</button>
         </div>    
     </div>    
 </div>
 
+<div class="container-full display-container" id="UserOperations">
+    <h4>User operations</h4>
+    <div class="row">
+        <div class="col-lg-2 col-md-2">
+            <button id="GetUser" class="auth2login btn btn-primary">Get User</button>
+        </div>
+        <!--GET USER REQUEST/RESPONSE-->
+        <div class="col-lg-2 col-md-2">
+            <button type="button" class="btn btn-success auth2login" data-toggle="modal" data-target="#UserRequestModal">User Request</button>
+            <div id="UserRequestModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">Get User Request</div>
+                        <div class="modal-body">
+                            <img src="{% static "/auth2/img/admin_get_user_request_doc.png" %}" alt="admin_get_user_request_doc">
+                            <img src="{% static "/auth2/img/admin_get_user_response_doc.png" %}" alt="admin_get_user_response_doc">
+                            <img src="{% static "/auth2/img/admin_get_user_request_postman.png" %}" alt="admin_get_user_request_postman">
+                        </div>
+                        <div class="modal-footer">Copy Rights - Microsoft</div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        <!--Clear-->
+        <div class="col-lg-2 col-md-2">
+            <button id="ClearUser" class="auth2login btn btn-danger">Clear User</button>
+        </div> 
+    </div>
+</div>
 {% endblock %}

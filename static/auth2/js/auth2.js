@@ -17,4 +17,16 @@ $(document).ready(function() {
     $('#ClearMail').click(function() {
         $('#OutlookMails').remove();
     });
+
+    // event for loading single user
+    $('#GetUser').click(function() {
+        $.get('/auth2/azure_get_user/', function(data){
+            $('#UserOperations').after(data);
+        }); 
+    });
+
+    // event for clear users
+    $('#ClearUser').click(function() {
+        $('#User').remove();
+    });
 });

@@ -16,7 +16,7 @@ from apps.auth2.models import auth2
 # ################    
 azure_client_id = 'e68115a7-0bd6-4696-98c7-dbba6d97bdef'
 azure_redirect_uri = 'http://127.0.0.1:8000/auth2/home/'
-azure_scope = 'offline_access Calendars.ReadWrite Contacts.ReadWrite Mail.ReadWrite Sites.ReadWrite.All'
+azure_scope = 'offline_access Calendars.ReadWrite Contacts.ReadWrite Mail.ReadWrite Sites.ReadWrite.All User.ReadWrite.All'
 azure_state_code = '19491001_Azure'
 # authorization code
 azure_authorization_endpoint = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize?client_id={0}&response_type=code&redirect_uri={1}&scope={2}&state={3}' 
@@ -27,6 +27,7 @@ azure_client_secret = 'lG6971})fwggciDCBEZX5%:'
 # outlook messages
 azure_outlook_get_messages_uri = 'https://graph.microsoft.com/v1.0/users/{0}/messages'
 azure_outlook_get_one_message_uri = 'https://graph.microsoft.com/v1.0//users/{0}/messages/{1}'
+azure_admin_get_one_user_uri = 'https://graph.microsoft.com/v1.0/users/{0}'
 
 
 # error handler
@@ -42,6 +43,7 @@ def error(request):
     }
 
     return render(request, 'auth2/error.html', context)
+
 
 # home
 def home(request):
@@ -117,6 +119,7 @@ def home(request):
     }
     return render(request, 'auth2/home.html', context)
 
+
 # azure functions page
 def azure(request):
     '''
@@ -183,6 +186,8 @@ def azure_refresh_token(request):
 
     return redirect('auth2_azure')
 
+
+# Get Mails
 def azure_read_messages(request):
     '''
     Read messages: DOC https://developer.microsoft.com/en-us/graph/docs/api-reference/v1.0/resources/message
@@ -227,6 +232,7 @@ def azure_read_messages(request):
     return render_to_response('auth2/mails.html', context)
 
 
+# Get 1st Mail
 def azure_read_first_message(request):
     '''
     Read messages: DOC https://developer.microsoft.com/en-us/graph/docs/api-reference/v1.0/api/message_get
@@ -263,6 +269,43 @@ def azure_read_first_message(request):
 
     return render_to_response('auth2/mail.html', context)
 
+
+# Get User
+def azure_get_user(request):
+    '''
+    Read messages: DOC https://developer.microsoft.com/en-us/graph/docs/api-reference/v1.0/api/user_get
+    request: https://graph.microsoft.com/v1.0/users/{id | userPrincipalName}
+    {userPrincipalName} sample - HARD CODE: aliciakeys@Madrix.onmicrosoft.com
+    method: GET
+    '''
+    upn = 'aliciakeys@Madrix.onmicrosoft.com'
+    auth2_obj = auth2.objects.filter(provider='Azure').first()
+
+    get_user_endpoint_uri = azure_admin_get_one_user_uri.format(upn)
+    token = 'Bearer {0}'.format(auth2_obj.access_token)
+
+    headers = {
+        'Authorization': token,
+    }
+
+    req = urllib_Request.Request(get_user_endpoint_uri, headers=headers)
+    res = urllib_Request.urlopen(req).read()
+    resJson = json.loads(res.decode('utf-8'))    
+
+    user = {
+        'id': resJson['id'],
+        'displayName': resJson['displayName'],
+        'mail': resJson['mail'],
+        'jobTitle': resJson['jobTitle'],
+        'businessPhones': resJson['businessPhones'][0],
+        'officeLocation': resJson['officeLocation'],
+    }
+
+    context = {
+        'user': user,
+    }
+
+    return render_to_response('auth2/user.html', context)
 
 
 
