@@ -29,4 +29,16 @@ $(document).ready(function() {
     $('#ClearUser').click(function() {
         $('#User').remove();
     });
+
+    // event for loading SPO list item.
+    $('#GetListItem').click(function() {
+        $.get('/auth2/azure_get_spo_list_item/', function(data){
+            $('#SharePointOperations').after(data);
+        }); 
+    });
+
+    // event for clear SPO
+    $('#ClearSPO').click(function() {
+        $('#SPOListItem').remove();
+    });
 });

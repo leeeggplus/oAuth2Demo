@@ -354,7 +354,3 @@ def azure_get_spo_list_item(request):
     }
 
     return render_to_response('auth2/spo_list_item.html', context)
-
-    
-
-
