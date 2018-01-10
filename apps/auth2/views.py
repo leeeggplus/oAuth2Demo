@@ -51,11 +51,38 @@ def error(request):
 
 # flow
 def flow(request):
+    '''
+    Page for explaining Azure oAuth 2.0 flow chart
+    '''
+    auth2_obj = auth2.objects.filter(provider='Azure').first()
+    # instance does not exist.
+    # redirect back to home
+    if not auth2_obj:
+        return redirect('auth2_home')
 
     context = {
-        
+        'auth2_obj': auth2_obj
     }
+
     return render(request, 'auth2/flow.html', context)
+
+
+# register auzre app
+def register_azure_app(request):
+    '''
+    Page for explaining Register Azure/Office Graph Apps
+    '''
+    auth2_obj = auth2.objects.filter(provider='Azure').first()
+    # instance does not exist.
+    # redirect back to home
+    if not auth2_obj:
+        return redirect('auth2_home')
+
+    context = {
+        'auth2_obj': auth2_obj
+    }
+
+    return render(request, 'auth2/register_app.html', context)
 
 
 # home

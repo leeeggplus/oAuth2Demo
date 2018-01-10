@@ -1,0 +1,36 @@
+{% extends 'master/layouts.html' %} 
+{% load static %} 
+
+{% block resource_content %}
+<link rel="stylesheet" href="{% static "auth2/css/auth2.css" %}"> 
+<script src="{% static "auth2/js/auth2.js" %}"></script>
+{% endblock %} 
+
+{% block container_content %}
+<div class="container-full display-container">    
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <h4><u>Register Application</u></h4>
+            <div class="split"></div>
+            <img src="{% static "/auth2/img/register/register.png" %}" alt="oAuth2_register">            
+        </div>
+        <div class="col-lg-2 col-md-2"></div>
+        <div class="col-lg-4 col-md-4">
+            <!--Document--> 
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h4><u>Guide - APP Registration</u></h4>
+                    <p><span></span><b><a href="https://developer.microsoft.com/en-us/graph/docs/concepts/auth_register_app_v2">https://developer.microsoft.com/en-us/graph/docs/concepts/auth_register_app_v2</a></b></p>
+                </div>
+            </div>   
+            
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h4><u>Sample - APPs</u></h4>
+                    <p><span></span><b><a href="https://apps.dev.microsoft.com/?referrer=https://developer.microsoft.com/en-us/graph/docs/concepts/auth_register_app_v2#/appList">https://apps.dev.microsoft.com/?referrer=https://developer.microsoft.com/en-us/graph/docs/concepts/auth_register_app_v2#/appList</a></b></p>
+                </div>
+            </div>   
+        </div>
+    </div>
+</div>
+{% endblock %}
