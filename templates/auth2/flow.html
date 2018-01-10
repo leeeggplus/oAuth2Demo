@@ -1,0 +1,41 @@
+{% extends 'master/layouts.html' %} 
+{% load static %} 
+
+{% block resource_content %}
+<link rel="stylesheet" href="{% static "auth2/css/auth2.css" %}"> 
+<script src="{% static "auth2/js/auth2.js" %}"></script>
+{% endblock %} 
+
+{% block container_content %}
+<div class="container-full display-container">    
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+            <img src="{% static "/auth2/img/flow/oAuth2_flow_chart.png" %}" alt="oAuth2_flow_chart">            
+        </div>
+
+        <div class="col-lg-6 col-md-6">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h4><u>Request an authorization code</u></h4>
+                    <p>The authorization code flow begins with the client directing the user to the <b>"/authorize"</b> endpoint. In this request, the client indicates the permissions it needs to acquire from the user.</p>
+                    <p><span>Endpoint Uri:</span> https://login.microsoftonline.com/common/oauth2/v2.0/authorize?<b>client_id</b>=6731de76-14a6-49ae-97bc-6eba6914391e&<b>response_type</b>=code&<b>redirect_uri</b>=http://localhost/myapp/&<b>scope</b>=offline_access Calendars.ReadWrite Contacts.ReadWrite Mail.ReadWrite Sites.ReadWrite.All User.ReadWrite.All&<b>state</b>=12345</p>
+                    <!--Parameters for Authorization Endpoint-->                    
+                    <button type="button" class="btn btn-success auth2login" data-toggle="modal" data-target="#ParmsAuthorizationModal">Auth Code Parms</button>
+                    <div id="ParmsAuthorizationModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">Parameters of Authorization Endpoint</div>
+                                <div class="modal-body">
+                                    <img src="{% static "/auth2/img/flow/oAuth2_flow_authorization_endpoint_parameters.png" %}" alt="oAuth2_flow_authorization_endpoint_parameters">
+                                </div>
+                                <div class="modal-footer">Copy Rights - Microsoft</div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

@@ -49,6 +49,15 @@ def error(request):
     return render(request, 'auth2/error.html', context)
 
 
+# flow
+def flow(request):
+
+    context = {
+        
+    }
+    return render(request, 'auth2/flow.html', context)
+
+
 # home
 def home(request):
     '''
