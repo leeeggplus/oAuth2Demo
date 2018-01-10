@@ -14,19 +14,66 @@
         </div>
         <div class="col-lg-2 col-md-2"></div>
         <div class="col-lg-4 col-md-4">
+            <!--Authorization Endpoint--> 
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <h4><u>Request an authorization code</u></h4>
                     <p>The authorization code flow begins with the client directing the user to the <b>"/authorize"</b> endpoint. In this request, the client indicates the permissions it needs to acquire from the user.</p>
-                    <p><span>Endpoint Uri:</span> https://login.microsoftonline.com/common/oauth2/v2.0/authorize?<b>client_id</b>=6731de76-14a6-49ae-97bc-6eba6914391e&<b>response_type</b>=code&<b>redirect_uri</b>=http://localhost/myapp/&<b>scope</b>=offline_access Calendars.ReadWrite Contacts.ReadWrite Mail.ReadWrite Sites.ReadWrite.All User.ReadWrite.All&<b>state</b>=12345</p>
-                    <!--Parameters for Authorization Endpoint-->                    
-                    <button type="button" class="btn btn-success auth2login" data-toggle="modal" data-target="#ParmsAuthorizationModal">Auth Code Parms</button>
+                    <p><span>Endpoint Uri (GET):</span> https://login.microsoftonline.com/common/oauth2/v2.0/authorize?<b>client_id</b>=6731de76-14a6-49ae-97bc-6eba6914391e&<b>response_type</b>=code&<b>redirect_uri</b>=http://localhost/myapp/&<b>scope</b>=offline_access Calendars.ReadWrite Contacts.ReadWrite Mail.ReadWrite Sites.ReadWrite.All User.ReadWrite.All&<b>state</b>=12345</p>
+                    <button type="button" class="btn btn-primary auth2login" data-toggle="modal" data-target="#ParmsAuthorizationModal">Auth Code Parms</button>
                     <div id="ParmsAuthorizationModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">Parameters of Authorization Endpoint</div>
                                 <div class="modal-body">
                                     <img src="{% static "/auth2/img/flow/oAuth2_flow_authorization_endpoint_parameters.png" %}" alt="oAuth2_flow_authorization_endpoint_parameters">
+                                </div>
+                                <div class="modal-footer">Copy Rights - Microsoft</div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="split"></div>
+            <!--Consent Experience-->     
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h4><u>Consent Experience</u></h4>
+                    <p>At this point, the user will be asked to <b>enter their credentials to authenticate with Azure AD</b>. 
+                        The v2.0 endpoint will also ensure that the user has consented to the permissions indicated in the <b>scope</b> query parameter. 
+                        If the user has not consented to any of those permissions and if an administrator has not previously consented on behalf 
+                        of all users in the organization, Azure AD will ask the user to consent to the required permissions. </p>
+                    <p><span>Scope Sample:</span> <b>offline_access Calendars.ReadWrite Contacts.ReadWrite Mail.ReadWrite Sites.ReadWrite.All User.ReadWrite.All</b></p>
+                    <!--Consent Experience-->                    
+                    <button type="button" class="btn btn-primary auth2login" data-toggle="modal" data-target="#UserConsentModal">User Consent Experience</button>
+                    <div id="UserConsentModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">User Consent Experience</div>
+                                <div class="modal-body">
+                                    <img src="{% static "/auth2/img/flow/oAuth2_flow_user_consent.png" %}" alt="oAuth2_flow_user_consent">
+                                </div>
+                                <div class="modal-footer">Copy Rights - Microsoft</div>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="split"></div>
+            <!--Access Token-->     
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h4><u>Get Access Token</u></h4>
+                    <p>Your app uses the authorization code received in the previous step to request an access token by sending a <b>POST</b> request to the <b>"/token"</b> endpoint.</p>
+                    <p><span>Endpoint Uri (POST):</span> https://login.microsoftonline.com/common/oauth2/v2.0/token</p>
+                    <!--Consent Experience-->                    
+                    <button type="button" class="btn btn-primary auth2login" data-toggle="modal" data-target="#TokenParmsModal">Token Endpoint Parms</button>
+                    <div id="TokenParmsModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">Token Endpoint Parms</div>
+                                <div class="modal-body">
+                                    <img src="{% static "/auth2/img/flow/oAuth2_flow_access_token.png" %}" alt="oAuth2_flow_access_token">
                                 </div>
                                 <div class="modal-footer">Copy Rights - Microsoft</div>
                             </div>

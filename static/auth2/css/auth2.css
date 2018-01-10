@@ -100,5 +100,9 @@
 
 .display-container p b {
   font-size: 16px;
-  color: #d22d2d !important;
+  color: #1d8348 !important;
+}
+
+.split {
+  margin-top: 30px;
 }
