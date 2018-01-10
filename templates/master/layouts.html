@@ -35,7 +35,7 @@
                     <li><a href="{% url 'auth2_home' %}">Home</a></li>
                     <li><a href="{% url 'auth2_flow' %}">Flow</a></li>
                     <li><a href="{% url 'auth2_register_azure_app' %}">Register Azure APP</a></li>
-                    <li><a href="#provider">{{ auth2_obj.provider }}</a></li>
+                    <li><a href="{% url 'auth2_azure' %}">{{ auth2_obj.provider }}</a></li>
                 </ul>
             </div>
         </div>
