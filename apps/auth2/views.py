@@ -57,8 +57,8 @@ def flow(request):
     auth2_obj = auth2.objects.filter(provider='Azure').first()
     # instance does not exist.
     # redirect back to home
-    if not auth2_obj:
-        return redirect('auth2_home')
+    # if not auth2_obj:
+    #    return redirect('auth2_home')
 
     context = {
         'auth2_obj': auth2_obj
@@ -75,8 +75,8 @@ def register_azure_app(request):
     auth2_obj = auth2.objects.filter(provider='Azure').first()
     # instance does not exist.
     # redirect back to home
-    if not auth2_obj:
-        return redirect('auth2_home')
+    # if not auth2_obj:
+    #     return redirect('auth2_home')
 
     context = {
         'auth2_obj': auth2_obj
