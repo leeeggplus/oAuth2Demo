@@ -59,7 +59,7 @@
             "type": "python",
             "request": "launch",
             "stopOnEntry": true,
-            "pythonPath": "E:/Git.Projects/oAuth2DemoEnv/Scripts/python.exe",
+            "pythonPath": "D:/GitProjects/auth2DemoEnv/Scripts/python.exe",
             "program": "${workspaceFolder}/manage.py",
             "cwd": "${workspaceFolder}",
             "args": [
